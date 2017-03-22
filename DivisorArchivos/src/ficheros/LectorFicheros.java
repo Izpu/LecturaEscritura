@@ -5,13 +5,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LectorFicheros {
 	private File fichero;
 	private FileReader fr;
 	private BufferedReader br;
+	private ArrayList<String> lectura;
 	public LectorFicheros(String ruta)
 	{
+		lectura=new ArrayList<String>();
 		cargarFichero(ruta);
 		leerFichero();
 		cerrarFichero();
@@ -33,6 +36,7 @@ public class LectorFicheros {
 		try {
 			while((linea=br.readLine())!=null)
 			{
+				lectura.add(linea);
 				System.out.println(linea);
 			}
 		} catch (IOException e) {
@@ -51,5 +55,9 @@ public class LectorFicheros {
 				e.printStackTrace();
 			}
 		}
+	}
+	public ArrayList<String> getLectura()
+	{
+		return lectura;
 	}
 }
